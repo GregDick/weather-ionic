@@ -7,9 +7,13 @@
           <input type='search' placeholder='Enter a city...' ng-model='$parent.$parent.location' ng-change='$parent.locationChanged()'/>
         </label>
       </ion-item>
-        <a class='result' ng-repeat='city in cityInfo' ui-sref='app.weather'>
-          <ion-item >{{city}}</ion-item>
-        </a>
+      <ion-item class='result' ng-repeat='city in cityArray' ui-sref='app.weather({
+          city: city.formatted_address,
+          lat: city.geometry.location.lat,
+          lng: city.geometry.location.lng
+        })'>
+        {{city.formatted_address}}
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>

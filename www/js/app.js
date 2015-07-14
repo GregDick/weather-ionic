@@ -59,7 +59,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'weather.search', 'we
     })
 
   .state('app.weather', {
-    url: "/weather/:placeID",
+    url: "/weather/:city/:lat/:lng",
     views: {
       'menuContent': {
         templateUrl: "templates/weather/weather.html",
