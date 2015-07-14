@@ -1,15 +1,15 @@
 <ion-view view-title="Location Search">
   <ion-content>
     <ion-list class="list-inset">
-      <ion-item>
-        <label class="item-input">
+      <ion-item class='item-input-inset'>
+        <label class="item-input-wrapper">
           <i class='icon ion-search placeholder-icon'></i>
           <input type='search' placeholder='Enter a city...' ng-model='$parent.$parent.location' ng-change='$parent.locationChanged()'/>
         </label>
       </ion-item>
-    </ion-list>
-    <ion-list class="list-inset">
-      <ion-item ng-repeat='city in cityInfo'>{{city}}</ion-item>
+        <a class='result' ng-repeat='city in cityInfo' ui-sref='app.weather'>
+          <ion-item >{{city}}</ion-item>
+        </a>
     </ion-list>
   </ion-content>
 </ion-view>
