@@ -5,12 +5,17 @@ angular
 
   $scope.locationChanged = _.debounce(function(){
     Weather.getCoord($scope.location, function(data){
-      $scope.lat = data.results[0].geometry.location.lat;
-      $scope.lng = data.results[0].geometry.location.lng;
-      console.log($scope.lat);
-      console.log($scope.lng);
+      $scope.cityInfo = [];
+      $scope.cityArray = data.results;
+      $scope.cityArray.forEach(function(cityObject){
+        $scope.cityInfo.push(cityObject.formatted_address);
+        // $scope.cityInfo.city['lat'] = cityObject.geometry.location.lat;
+        // $scope.cityInfo.city['lng'] = cityObject.geometry.location.lng;
+      })
+      console.log($scope.cityArray);
+      console.log($scope.cityInfo);
     });
-  }, 2000)
+  }, 1200)
 
 
 
