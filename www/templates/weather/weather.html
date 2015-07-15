@@ -1,29 +1,29 @@
 <ion-view view-title="{{city}}">
   <ion-content>
-    <ion-list>
-      <ion-item> Currently:
-        <i class="bigger wi wi-{{iconText}}"></i>
+    <ion-list class='temp-color'>
+      <ion-item class='weather-item'> Currently:
         {{forecast.currently.summary}}
-      </ion-item>
+        <i class="bigger wi wi-{{iconText}}"></i>
+      </ion-item class='weather-item'>
 
-      <ion-item>
+      <ion-item class='weather-item'>
         Temperature : {{forecast.currently.temperature}}&deg
       </ion-item>
-      <ion-item>
+      <ion-item class='weather-item'>
         Feels like: {{forecast.currently.apparentTemperature}}&deg
       </ion-item>
-      <ion-item>
+      <ion-item class='weather-item'>
         Wind: {{forecast.currently.windSpeed}} mph
       </ion-item>
-      <ion-item>
+      <ion-item class='weather-item'>
         Chance of precipitation: {{forecast.currently.precipProbability}}%
       </ion-item>
-    </ion-list>
+    </ion-list class='weather-item'>
     <div class="card">
       <div class="item item-divider bigger">
         Forecast
       </div>
-      <div class="item item-text-wrap">
+      <div class="item item-text-wrap italics">
         {{forecast.daily.summary}}
       </div>
     </div>

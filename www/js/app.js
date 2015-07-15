@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'weather.search', 'weather.factory', 'weather.weather'])
+angular.module('starter', ['ionic', 'starter.controllers', 'weather.search', 'weather.factory', 'weather.weather', 'weather.settings'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -44,7 +44,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'weather.search', 'we
     url: "/settings",
     views: {
       'menuContent': {
-        templateUrl: "templates/settings.html"
+        templateUrl: "templates/settings/settings.html",
+        controller: "SettingsCtrl"
       }
     }
   })

@@ -19,13 +19,18 @@ angular
       var prefix = $scope.iconText.slice(i);
       var remaining = $scope.iconText.substring(0,i-1);
       $scope.iconText = prefix + '-' +  remaining;
-      console.log($scope.iconText);
-    }else if($scope.iconText.indexOf('day') > -1){
+    }
+    else if($scope.iconText === 'partly-cloudy-day'){
+      $scope.iconText = 'day-cloudy';
+    }
+    else if($scope.iconText === 'clear-day'){
+      $scope.iconText = 'day-sunny';
+    }
+    else if($scope.iconText.indexOf('day') > -1){
       var i = $scope.iconText.indexOf('day');
       var prefix = $scope.iconText.slice(i);
       var remaining = $scope.iconText.substring(0,i-1);
       $scope.iconText = prefix + '-' + remaining;
-      console.log($scope.iconText);
     }
   })
 });

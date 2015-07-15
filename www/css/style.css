@@ -12,3 +12,24 @@
 .darkpurple{
   background-color: #1E1440 !important;
 }
+
+.temp-color{
+  background: linear-gradient(90deg, white 0%, rgba(138, 249, 255, 0.2) 20%, rgba(115, 171, 232, 0.2) 100%);
+}
+
+.invert-color{
+  background: linear-gradient(-90deg, white 0%, rgba(138, 249, 255, 0.2) 20%, rgba(115, 171, 232, 0.2) 100%);
+}
+
+.weather-item{
+  padding: 22px 16px !important;
+  text-align: right;
+}
+
+.italics{
+  font-style: italic;
+}
+
+.item.range input{
+  height: 35px;
+}

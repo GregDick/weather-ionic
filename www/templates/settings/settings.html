@@ -1,0 +1,42 @@
+<ion-view view-title="Settings">
+  <ion-content>
+    <div class="list">
+      <div class="item item-divider">Precision</div>
+      <div class="item range">
+        <span>76&deg</span>
+        <input type="range" name="volume" min='0' max='2' value='2' ng-model='$parent.precision'>
+        <span>76.39&deg</span>
+      </div>
+      <div class="item item-divider">Temperature Scale</div>
+      <label class="item item-radio">
+        <input type="radio" name="group" ng-model='$parent.scale' value="celcius">
+        <div class="item-content">
+          Celcius
+        </div>
+        <i class="radio-icon ion-checkmark"></i>
+      </label>
+      <label class="item item-radio">
+        <input type="radio" name="group" ng-model='$parent.scale' value="farenheit">
+        <div class="item-content">
+          Farenheit
+        </div>
+        <i class="radio-icon ion-checkmark"></i>
+      </label>
+    </div>
+    <div class="item item-divider">Arbitrary Choices</div>
+    <ul class="list">
+      <li class="item item-checkbox">
+         <label class="checkbox checkbox-stable">
+           <input type="checkbox">
+         </label>
+         Always Cold
+      </li>
+      <li class="item item-checkbox">
+         <label class="checkbox checkbox-stable">
+           <input type="checkbox">
+         </label>
+         Always Hot
+      </li>
+    </ul>
+  </ion-content>
+</ion-view>
