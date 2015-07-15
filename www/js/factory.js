@@ -23,5 +23,11 @@ angular.module('weather.factory', [])
     get precision (){
       return localStorage.precision;
     }
+    // set city(city, lat, lng){
+    //   localStorage[city] = lat + ',' + lng;
+    // },
+    // get city(){
+    //   return localStorage
+    // }
   };
 });

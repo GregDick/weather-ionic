@@ -10,6 +10,12 @@ angular
     });
   }, 1200)
 
+  if(localStorage.savedCities){
+    $scope.savedCities = JSON.parse(localStorage.savedCities);
+  }else{
+    $scope.savedCities = [];
+  }
+
 
 
 });

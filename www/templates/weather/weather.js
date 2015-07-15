@@ -5,14 +5,26 @@ angular
 
   $ionicLoading.show();
 
+  //gets scale and precision from local storage
+  $scope.scale = weather.scale || 'F';
+  $scope.precision = weather.precision || 2;
+
+  //sets city, lat, lng from the page url
   $scope.city = $stateParams.city;
   var lat = $stateParams.lat*1
   var lng = $stateParams.lng*1
 
-  weather.getWeather(lat.toFixed(4), lng.toFixed(4), function(res){
+  if($scope.scale === 'C'){
+    lng += '/?units=uk2';
+  }
+
+  //calls api for weather data
+  weather.getWeather(lat, lng, function(res){
     $ionicLoading.hide();
     $scope.forecast = res;
     console.log(res);
+
+    //alter icon string to fit my icon font
     $scope.iconText = res.currently.icon;
     if($scope.iconText.indexOf('night') > -1){
       var i = $scope.iconText.indexOf('night');
@@ -33,4 +45,21 @@ angular
       $scope.iconText = prefix + '-' + remaining;
     }
   })
+
+  if(localStorage.savedCities){
+    $scope.savedCities = JSON.parse(localStorage.savedCities);
+  }else{
+    $scope.savedCities = [];
+  }
+
+  $scope.saveCity = function(){
+    console.log(typeof $scope.savedCities);
+    $scope.savedCities.push($scope.city);
+    localStorage.savedCities = JSON.stringify($scope.savedCities);
+  }
+
+
+
+
+
 });
