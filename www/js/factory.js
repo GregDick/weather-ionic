@@ -1,5 +1,5 @@
 angular.module('weather.factory', [])
-.factory('Weather', function($http){
+.factory('weather', function($http){
   return{
     getCoord: function(location, cb){
       $http
@@ -11,7 +11,17 @@ angular.module('weather.factory', [])
         .get(`/api/forecast/${lat},${lng}`)
         .success(cb)
     },
-    scale: 'farenheit',
-    precision: 2
+    set scale(scale){
+      localStorage.scale = scale;
+    },
+    get scale(){
+      return localStorage.scale;
+    },
+    set precision(precision){
+      localStorage.precision = precision;
+    },
+    get precision (){
+      return localStorage.precision;
+    }
   };
 });

@@ -1,10 +1,10 @@
 angular
 .module('weather.search', [])
 
-.controller('SearchCtrl', function($scope, $stateParams, Weather) {
+.controller('SearchCtrl', function($scope, $stateParams, weather) {
 
   $scope.locationChanged = _.debounce(function(){
-    Weather.getCoord($scope.location, function(data){
+    weather.getCoord($scope.location, function(data){
       $scope.cityArray = data.results;
       console.log($scope.cityArray);
     });
