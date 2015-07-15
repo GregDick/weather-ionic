@@ -12,6 +12,20 @@ angular
   Weather.getWeather(lat.toFixed(4), lng.toFixed(4), function(res){
     $ionicLoading.hide();
     $scope.forecast = res;
-    console.log(res)
+    console.log(res);
+    $scope.iconText = res.currently.icon;
+    if($scope.iconText.indexOf('night') > -1){
+      var i = $scope.iconText.indexOf('night');
+      var prefix = $scope.iconText.slice(i);
+      var remaining = $scope.iconText.substring(0,i-1);
+      $scope.iconText = prefix + '-' +  remaining;
+      console.log($scope.iconText);
+    }else if($scope.iconText.indexOf('day') > -1){
+      var i = $scope.iconText.indexOf('day');
+      var prefix = $scope.iconText.slice(i);
+      var remaining = $scope.iconText.substring(0,i-1);
+      $scope.iconText = prefix + '-' + remaining;
+      console.log($scope.iconText);
+    }
   })
 });

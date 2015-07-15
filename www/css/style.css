@@ -3,3 +3,12 @@
   text-decoration: none !important;
   color: gray !important;
 }
+
+.bigger{
+  font-size: 1.25em;
+  color: #1E1440;
+}
+
+.darkpurple{
+  background-color: #1E1440 !important;
+}
