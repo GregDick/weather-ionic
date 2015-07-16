@@ -28,13 +28,8 @@ angular
     }
   })
 
-  //append units query to API url if scale === celcius
-  if($scope.scale === 'C'){
-    lng += '/?units=uk2';
-  }
-
   //calls api for weather data
-  weather.getWeather(lat, lng, function(res){
+  weather.getWeather($scope.scale, lat, lng, function(res){
     $ionicLoading.hide();
     $scope.forecast = res;
     console.log(res);

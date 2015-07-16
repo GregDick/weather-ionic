@@ -6,9 +6,11 @@ angular.module('weather.factory', [])
         .get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}`)
         .success(cb)
     },
-    getWeather: function(lat, lng, cb){
+    getWeather: function(scale, lat, lng, cb){
+      //append units query to API url if scale === celcius
+      var url = scale === 'C' ? `/api/forecast/${lat},${lng}/?units=uk2` : `/api/forecast/${lat},${lng}`;
       $http
-        .get(`/api/forecast/${lat},${lng}`)
+        .get(url)
         .success(cb)
     },
     set scale(scale){
@@ -23,11 +25,6 @@ angular.module('weather.factory', [])
     get precision (){
       return localStorage.precision;
     }
-    // set city(city, lat, lng){
-    //   localStorage[city] = lat + ',' + lng;
-    // },
-    // get city(){
-    //   return localStorage
-    // }
+
   };
 });

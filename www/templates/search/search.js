@@ -7,9 +7,15 @@ angular
     weather.getCoord($scope.location, function(data){
       $scope.cityArray = data.results;
       console.log($scope.cityArray);
+      if(localStorage.savedCities){
+        $scope.savedCities = JSON.parse(localStorage.savedCities);
+      }else{
+        $scope.savedCities = [];
+      }
     });
   }, 1200)
 
+  //got weird error if localStorage.savedCities was not defined
   if(localStorage.savedCities){
     $scope.savedCities = JSON.parse(localStorage.savedCities);
   }else{
