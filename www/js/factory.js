@@ -1,6 +1,11 @@
 angular.module('weather.factory', [])
 .factory('weather', function($http){
   return{
+    getCurrentLocation : function(cb){
+      $http
+        .get(`http://ip-api.com/json`)
+        .success(cb)
+    },
     getCoord: function(location, cb){
       $http
         .get(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}`)
