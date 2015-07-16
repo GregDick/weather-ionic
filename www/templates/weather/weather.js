@@ -26,38 +26,46 @@ angular
     if(object.city === $scope.city){
       $scope.disableButton = true;
     }
-  })
+  });
 
-  //calls api for weather data
-  weather.getWeather($scope.scale, lat, lng, function(res){
-    $ionicLoading.hide();
-    $scope.forecast = res;
-    console.log(res);
+  //IIFE calls api for weather data
+  ($scope.checkWeather = function(){
+    weather.getWeather($scope.scale, lat, lng, function(res){
+      $ionicLoading.hide();
+      $scope.forecast = res;
+      console.log(res);
 
-    //alter icon string to fit my icon font
-    $scope.iconText = res.currently.icon;
-    if($scope.iconText.indexOf('night') > -1){
-      var i = $scope.iconText.indexOf('night');
-      var prefix = $scope.iconText.slice(i);
-      var remaining = $scope.iconText.substring(0,i-1);
-      $scope.iconText = prefix + '-' +  remaining;
-    }
-    else if($scope.iconText === 'partly-cloudy-day'){
-      $scope.iconText = 'day-cloudy';
-    }
-    else if($scope.iconText === 'clear-day'){
-      $scope.iconText = 'day-sunny';
-    }
-    else if($scope.iconText.indexOf('day') > -1){
-      var i = $scope.iconText.indexOf('day');
-      var prefix = $scope.iconText.slice(i);
-      var remaining = $scope.iconText.substring(0,i-1);
-      $scope.iconText = prefix + '-' + remaining;
-    }
-  })
+      //alter icon string to fit my icon font
+      $scope.iconText = res.currently.icon;
+      if($scope.iconText.indexOf('night') > -1){
+        var i = $scope.iconText.indexOf('night');
+        var prefix = $scope.iconText.slice(i);
+        var remaining = $scope.iconText.substring(0,i-1);
+        $scope.iconText = prefix + '-' +  remaining;
+      }
+      else if($scope.iconText === 'partly-cloudy-day'){
+        $scope.iconText = 'day-cloudy';
+      }
+      else if($scope.iconText === 'clear-day'){
+        $scope.iconText = 'day-sunny';
+      }
+      else if($scope.iconText.indexOf('day') > -1){
+        var i = $scope.iconText.indexOf('day');
+        var prefix = $scope.iconText.slice(i);
+        var remaining = $scope.iconText.substring(0,i-1);
+        $scope.iconText = prefix + '-' + remaining;
+      }
+    })
+  })()
 
+  //on pull to refresh
+  $scope.doRefresh = function() {
+    $scope.checkWeather();
+    // Stop the ion-refresher from spinning
+    $scope.$broadcast('scroll.refreshComplete');
+  };
 
-
+  //on save city button click
   $scope.saveCity = function(){
     $scope.disableButton = true;
     $scope.savedCities.push({

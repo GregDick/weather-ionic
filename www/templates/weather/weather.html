@@ -1,5 +1,9 @@
 <ion-view view-title="{{city}}">
   <ion-content>
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="$parent.doRefresh()">
+    </ion-refresher>
     <ion-list class='temp-color'>
       <ion-item class='weather-item'> Currently:
         {{forecast.currently.summary}}
