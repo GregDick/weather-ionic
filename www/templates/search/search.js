@@ -26,7 +26,7 @@ angular
     });
   }, 1200)
   //delete a saved city
-  $scope.delete = function(i){
+  $scope.remove = function(i){
     $scope.savedCities.splice(i, 1);
     weather.setFavorites($scope.savedCities);
   }

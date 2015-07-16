@@ -2,10 +2,10 @@
   <ion-content on-swipe-up="show()">
     <ion-refresher
       pulling-text="Pull to refresh..."
-      on-refresh="$parent.doRefresh()">
+      on-refresh="doRefresh()">
     </ion-refresher>
-    <div class="current">
-      <ion-list class='temp-color'>
+    <div ng-show="timeframe === 'currently' ">
+      <ion-list>
         <ion-item class='weather-item'> Currently:
           {{forecast.currently.summary}}
           <i class="bigger wi wi-{{iconText}}"></i>
@@ -28,6 +28,16 @@
           {{forecast.daily.summary}}
         </div>
       </div>
+    </div>
+    <div ng-show="timeframe === 'hourly' ">
+      hourly
+    </div>
+    <div ng-show="timeframe === 'daily' ">
+      <ion-list>
+        <ion-item class='weather-item' ng-repeat='obj in forecast.daily.data'>
+          {{obj.time | date}}
+        </ion-item>
+      </ion-list>
     </div>
     <button class="button button-full bigger" ng-click='saveCity()' ng-disabled='disableButton'>Save City</button>
   </ion-content>

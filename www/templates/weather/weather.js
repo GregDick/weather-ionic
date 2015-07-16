@@ -4,6 +4,7 @@ angular
 .controller('WeatherCtrl', function($scope, $stateParams, weather, $ionicLoading, $ionicActionSheet) {
 
   $ionicLoading.show();
+  $scope.timeframe = 'currently';
 
   //gets scale and precision from local storage
   $scope.scale = weather.scale || 'F';
@@ -74,24 +75,31 @@ angular
 
   // Triggered on a button click, or some other target
   $scope.show = function() {
+    // Show the action sheet
+    var hideSheet = $ionicActionSheet.show({
+      buttons: [
+        { text: 'Hourly' },
+        { text: 'Daily' },
+        { text : 'Currently' }
+      ],
+      cancelText: 'Cancel',
+      cancel: function() {
+           return true;
+         },
+      buttonClicked: function(index) {
+        switch(index){
+         case 0: $scope.timeframe = 'hourly';
+         break;
+         case 1: $scope.timeframe = 'daily';
+         break;
+         case 2: $scope.timeframe = 'currently';
+         break;
+        }
+        return true;
+      }
+    });
 
-   // Show the action sheet
-   var hideSheet = $ionicActionSheet.show({
-     buttons: [
-       { text: 'Hourly' },
-       { text: 'Daily' },
-       { text : 'Currently' }
-     ],
-     cancelText: 'Cancel',
-     cancel: function() {
-          // add cancel code..
-        },
-     buttonClicked: function(index) {
-       console.log('button'+index);
-     }
-   });
-
- };
+  };
 
 
 
