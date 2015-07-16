@@ -1,7 +1,7 @@
 angular
 .module('weather.weather', [])
 
-.controller('WeatherCtrl', function($scope, $stateParams, weather, $ionicLoading) {
+.controller('WeatherCtrl', function($scope, $stateParams, weather, $ionicLoading, $ionicActionSheet) {
 
   $ionicLoading.show();
 
@@ -15,11 +15,7 @@ angular
   var lng = $stateParams.lng*1
 
   //get or create saved cities list
-  if(localStorage.savedCities){
-    $scope.savedCities = JSON.parse(localStorage.savedCities);
-  }else{
-    $scope.savedCities = [];
-  }
+  $scope.savedCities = weather.getFavorites();
 
   //disable save button if current city is on saved cities list
   $scope.savedCities.forEach(function(object){
@@ -73,10 +69,29 @@ angular
       lat: lat,
       lng: lng
     });
-    localStorage.savedCities = JSON.stringify($scope.savedCities);
+    weather.setFavorites($scope.savedCities);
   }
 
+  // Triggered on a button click, or some other target
+  $scope.show = function() {
 
+   // Show the action sheet
+   var hideSheet = $ionicActionSheet.show({
+     buttons: [
+       { text: 'Hourly' },
+       { text: 'Daily' },
+       { text : 'Currently' }
+     ],
+     cancelText: 'Cancel',
+     cancel: function() {
+          // add cancel code..
+        },
+     buttonClicked: function(index) {
+       console.log('button'+index);
+     }
+   });
+
+ };
 
 
 

@@ -24,7 +24,17 @@ angular.module('weather.factory', [])
     },
     get precision (){
       return localStorage.precision;
+    },
+    setFavorites : function(favorites){
+      localStorage.savedCities = JSON.stringify(favorites);
+    },
+    getFavorites : function(){
+      var json = localStorage.savedCities ? JSON.parse(localStorage.savedCities) : [{
+        city: 'New York, NY, USA',
+        lat: 40.7127837,
+        lng: -74.0059413
+      }];
+      return json;
     }
-
   };
 });
