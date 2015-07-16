@@ -8,16 +8,22 @@
       <ion-list>
         <ion-item class='weather-item'> Currently:
           {{forecast.currently.summary}}
-          <i class="bigger wi wi-{{iconText}}"></i>
+          <skycon icon='forecast.currently.icon' color='iconColor' size='iconSize'></skycon>
         </ion-item class='weather-item'>
         <ion-item class='weather-item'>
-          Temperature : {{forecast.currently.temperature | number : precision}}&deg {{scale}}
+          Temperature :
+          <span ng-class='{hot : forecast.currently.temperature >= 75, temperate : forecast.currently.temperature >= 67, cold : forecast.currently.temperature < 67 }'>
+            {{forecast.currently.temperature | number : precision}}&deg {{scale}}
+          </span>
         </ion-item>
         <ion-item class='weather-item'>
-          Feels like: {{forecast.currently.apparentTemperature | number : precision}}&deg {{scale}}
+          Feels like:
+            <span ng-class='{hot : forecast.currently.temperature >= 75, temperate : forecast.currently.temperature >= 67, cold : forecast.currently.temperature < 67 }'>
+              {{forecast.currently.apparentTemperature | number : precision}}&deg {{scale}}
+            </span>
         </ion-item>
         <ion-item class='weather-item'>
-          Chance of precipitation: {{forecast.currently.precipProbability}}%
+          Chance of precipitation: {{forecast.currently.precipProbability * 100 | number : 0}}%
         </ion-item>
       </ion-list class='weather-item'>
       <div class="card">
@@ -36,8 +42,9 @@
       <ion-list>
         <ion-item class='weather-item' ng-repeat='obj in forecast.daily.data'>
           <h3 class='left'>{{obj.time * 1000 | date}}</h3>
-          <span class='cold'>{{obj.temperatureMin}}&deg{{scale}}</span>
-          <span class='hot'>{{obj.temperatureMax}}&deg{{scale}}</span>
+          <span> Precip: {{obj.precipProbability * 100 | number : 0}}% </span>
+          <span class='cold'> {{obj.temperatureMin | number : precision}}&deg{{scale}} </span>
+          <span class='hot'> {{obj.temperatureMax | number : precision}}&deg{{scale}} </span>
           <skycon icon='obj.icon' color='iconColor' size='iconSize'></skycon>
         </ion-item>
       </ion-list>
