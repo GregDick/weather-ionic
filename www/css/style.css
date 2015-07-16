@@ -14,6 +14,18 @@
   color: #704BEE;
 }
 
+.temperate{
+  color: #BB32ED;
+}
+
+.cold{
+  color: #5779DE;
+}
+
+.hot{
+  color: #FF5A4D;
+}
+
 .darkpurple{
   background-color: #1E1440 !important;
 }
@@ -29,6 +41,9 @@
 .weather-item{
   padding: 22px 16px !important;
   text-align: right;
+}
+.left{
+  text-align: left;
 }
 
 .italics{

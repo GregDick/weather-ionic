@@ -5,6 +5,8 @@ angular
 
   $ionicLoading.show();
   $scope.timeframe = 'currently';
+  $scope.iconColor = '#704BEE';
+  $scope.iconSize = '25'
 
   //gets scale and precision from local storage
   $scope.scale = weather.scale || 'F';

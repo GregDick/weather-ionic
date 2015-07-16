@@ -35,7 +35,10 @@
     <div ng-show="timeframe === 'daily' ">
       <ion-list>
         <ion-item class='weather-item' ng-repeat='obj in forecast.daily.data'>
-          {{obj.time | date}}
+          <h3 class='left'>{{obj.time * 1000 | date}}</h3>
+          <span class='cold'>{{obj.temperatureMin}}&deg{{scale}}</span>
+          <span class='hot'>{{obj.temperatureMax}}&deg{{scale}}</span>
+          <skycon icon='obj.icon' color='iconColor' size='iconSize'></skycon>
         </ion-item>
       </ion-list>
     </div>
