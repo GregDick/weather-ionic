@@ -16,6 +16,9 @@ angular
     $scope.savedCities = [];
   }
 
-
+  $scope.delete = function(i){
+    $scope.savedCities.splice(i, 1);
+    localStorage.savedCities = JSON.stringify($scope.savedCities);
+  }
 
 });

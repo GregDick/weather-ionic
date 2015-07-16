@@ -14,6 +14,18 @@
         })'>
         {{city.formatted_address}}
       </ion-item>
+      <div class="item item-divider">Saved Cities</div>
+      <ion-item class='result' ng-repeat='(key, obj) in savedCities' ui-sref='app.weather({
+          city: obj.city,
+          lat: obj.lat,
+          lng: obj.lng
+        })'>
+        <i class='icon royal ion-android-favorite-outline'></i>
+        {{obj.city}}
+        <ion-option-button class="button-royal" ng-click="delete(key)">
+          Delete
+        </ion-option-button>
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>

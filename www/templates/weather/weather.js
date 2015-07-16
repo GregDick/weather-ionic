@@ -14,6 +14,21 @@ angular
   var lat = $stateParams.lat*1
   var lng = $stateParams.lng*1
 
+  //get or create saved cities list
+  if(localStorage.savedCities){
+    $scope.savedCities = JSON.parse(localStorage.savedCities);
+  }else{
+    $scope.savedCities = [];
+  }
+
+  //disable save button if current city is on saved cities list
+  $scope.savedCities.forEach(function(object){
+    if(object.city === $scope.city){
+      $scope.disableButton = true;
+    }
+  })
+
+  //append units query to API url if scale === celcius
   if($scope.scale === 'C'){
     lng += '/?units=uk2';
   }
@@ -46,15 +61,15 @@ angular
     }
   })
 
-  if(localStorage.savedCities){
-    $scope.savedCities = JSON.parse(localStorage.savedCities);
-  }else{
-    $scope.savedCities = [];
-  }
+
 
   $scope.saveCity = function(){
-    console.log(typeof $scope.savedCities);
-    $scope.savedCities.push($scope.city);
+    $scope.disableButton = true;
+    $scope.savedCities.push({
+      city: $scope.city,
+      lat: lat,
+      lng: lng
+    });
     localStorage.savedCities = JSON.stringify($scope.savedCities);
   }
 
