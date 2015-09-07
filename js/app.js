@@ -4,10 +4,10 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-'use strict';
+angular.module('starter', ['ionic', 'starter.controllers', 'weather.search', 'weather.factory', 'weather.weather', 'weather.settings', 'angular-skycons'])
 
-angular.module('starter', ['ionic', 'starter.controllers', 'weather.search', 'weather.factory', 'weather.weather', 'weather.settings', 'angular-skycons']).run(function ($ionicPlatform) {
-  $ionicPlatform.ready(function () {
+.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -18,13 +18,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'weather.search', 'we
       StatusBar.styleDefault();
     }
   });
-}).config(function ($stateProvider, $urlRouterProvider) {
-  $stateProvider.state('app', {
+})
+
+.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+
+  .state('app', {
     url: "/app",
     abstract: true,
     templateUrl: "templates/menu.html",
     controller: 'AppCtrl'
-  }).state('app.search', {
+  })
+
+  .state('app.search', {
     url: "/search",
     views: {
       'menuContent': {
@@ -32,7 +38,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'weather.search', 'we
         controller: "SearchCtrl"
       }
     }
-  }).state('app.settings', {
+  })
+
+  .state('app.settings', {
     url: "/settings",
     views: {
       'menuContent': {
@@ -40,15 +48,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'weather.search', 'we
         controller: "SettingsCtrl"
       }
     }
-  }).state('app.playlists', {
-    url: "/playlists",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/playlists.html",
-        controller: 'PlaylistsCtrl'
+  })
+    .state('app.playlists', {
+      url: "/playlists",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/playlists.html",
+          controller: 'PlaylistsCtrl'
+        }
       }
-    }
-  }).state('app.weather', {
+    })
+
+  .state('app.weather', {
     url: "/weather/:city/:lat/:lng",
     views: {
       'menuContent': {
